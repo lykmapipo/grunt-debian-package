@@ -70,7 +70,7 @@ module.exports = function (grunt) {
                 links = controlDirectory + '/links',
                 dirs = controlDirectory + '/dirs',
                 makefile = temp_directory + '/Makefile',
-                dependencies = '';
+                dependencies = ''
                 pre_dependencies = '';
 
             if (!_validateOptions(options, options.quiet)) {
