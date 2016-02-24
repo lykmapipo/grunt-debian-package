@@ -71,6 +71,7 @@ module.exports = function (grunt) {
                 dirs = controlDirectory + '/dirs',
                 makefile = temp_directory + '/Makefile',
                 dependencies = '';
+                pre_dependencies = '';
 
             if (!_validateOptions(options, options.quiet)) {
                 return done(false);
@@ -91,6 +92,10 @@ module.exports = function (grunt) {
                 dependencies = ', ' + options.dependencies;
             }
 
+            if (options.pre_dependencies) {
+                pre_dependencies = ', ' + options.pre_dependencies;
+            }
+
             // generate packaging control files
             _transformAndReplace([links], '\\$\\{softlinks\\}', options.links || [], function (softlink) {
                 return softlink.target + '       ' + softlink.source + '\n';
@@ -107,6 +112,7 @@ module.exports = function (grunt) {
             _findAndReplace([changelog, control, links, dirs], '\\$\\{version\\}', options.version);
             _findAndReplace([changelog, control, links, dirs], '\\$\\{build_number\\}', options.build_number);
             _findAndReplace([control], '\\$\\{dependencies\\}', dependencies);
+            _findAndReplace([control], '\\$\\{pre_dependencies\\}', pre_dependencies);
             _findAndReplace([control], '\\$\\{target_architecture\\}', options.target_architecture);
             _findAndReplace([control], '\\$\\{category\\}', options.category);
             preparePackageContents(makefile, this.files, options.follow_soft_links, options.quiet);

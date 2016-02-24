@@ -1,5 +1,6 @@
 Source: ${name}
 Maintainer: ${maintainer.name} <${maintainer.email}>
+Homepage: ${home_page}
 Section: ${category}
 Priority: optional
 Standards-Version: 3.9.3
@@ -7,6 +8,7 @@ Build-Depends: debhelper (>= 9)
 
 Package: ${name}
 Architecture: ${target_architecture}
+Pre-Depends: ${pre_dependencies}
 Depends: ${shlibs:Depends}, ${misc:Depends}${dependencies}
 Description: ${short_description}
 ${long_description}
